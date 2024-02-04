@@ -1,12 +1,23 @@
-import { Bot, webhookCallback } from "grammy";
+import { webhookCallback } from "grammy";
+import bot from "./utils/bot.js";
+import registerHandlers from "./handlers/handlers.js";
 
-const token = process.env.BOT_TOKEN;
-if (!token) throw new Error("BOT_TOKEN is unset");
+async function runApp() {
+  // Handle errors
+  bot.catch((err) => console.error(err));
 
-const bot = new Bot(token);
+  // Register handlers
+  await registerHandlers();
 
-bot.command('start', ctx => {
-    ctx.reply('Hello Vercel!')
-})
+  // Enable graceful stop
+  process.once("SIGINT", stopRunner);
+  process.once("SIGTERM", stopRunner);
 
-export default webhookCallback(bot, "http");
+  // Set up webhooks
+  webhookCallback(bot, "http");
+
+  // Start bot
+  console.info(`\x1b[33mBot is running on @${bot.botInfo.username}\x1b[0m`);
+}
+
+runApp();
