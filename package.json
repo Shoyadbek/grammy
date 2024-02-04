@@ -11,6 +11,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "grammy": "^1.20.3"
+    "@grammyjs/i18n": "^1.0.1",
+    "@grammyjs/runner": "^2.0.3",
+    "@prisma/client": "^5.8.0",
+    "axios": "^1.6.6",
+    "dotenv": "^16.3.1",
+    "grammy": "^1.20.3",
+    "grammy-middlewares": "^1.0.11",
+    "sharp": "^0.33.2"
   }
 }
