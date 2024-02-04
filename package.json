@@ -5,8 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "postinstall": "prisma generate",
- 
+    "postinstall": "prisma generate"
   },
   "keywords": [],
   "author": "",
