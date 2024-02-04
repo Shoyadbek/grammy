@@ -9,20 +9,24 @@ async function runApp() {
   // Register handlers
   await registerHandlers();
 
-  // Enable graceful stop
-  // process.once("SIGINT", stopRunner);
-  // process.once("SIGTERM", stopRunner);
+
 
   // Set up webhooks
   webhookCallback(bot, "http");
 
-  // await bot.init()
+
 
   // Start bot
   console.info(`\x1b[33mBot is running on @${bot.botInfo.username}\x1b[0m`);
 }
 
-runApp();
+export default async function handler(req, res) {
+  // Вызовите вашу функцию runApp при получении HTTP-запроса
+  await runApp();
+
+  // Верните успешный статус, если нужно
+  res.status(200).send("Bot is running!");
+}
 
 
 
