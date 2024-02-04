@@ -1,4 +1,4 @@
-import { Bot, session, webhookCallback } from "grammy";
+import { Bot, session } from "grammy";
 import env from "./config.js";
 import { ignoreOld, sequentialize } from "grammy-middlewares";
 import i18n from "./i18n.js";

@@ -2,26 +2,12 @@ import { webhookCallback } from "grammy";
 import bot from "../utils/bot.js";
 import registerHandlers from "../handlers/handlers.js";
 
-// Ваш код оставляется без изменений
-async function runApp() {
-  // Handle errors
-  bot.catch((err) => console.error(err));
+const startBot = async () => {
+  await registerHandlers(bot);
+  const handleWebhook = webhookCallback(bot, "http");
 
-  // Register handlers
-  await registerHandlers();
+  return handleWebhook; // Возвращаем функцию-обработчик из функции startBot
+};
 
-  // Set up webhooks
-  webhookCallback(bot, "http");
-
-  // Start bot
-  // console.info(`\x1b[33mBot is running on @${bot.botInfo.username}\x1b[0m`);
-}
-
-// Экспортируйте функцию, которая будет обрабатывать HTTP-запросы
-export default async function handler(req, res) {
-  // Вызовите вашу функцию runApp при получении HTTP-запроса
-  await runApp();
-
-  // Верните успешный статус, если нужно
-  res.status(200).send("Bot is running!");
-}
+// Вызываем startBot для инициализации и запуска бота
+export default startBot; 
