@@ -3,6 +3,9 @@ import bot from "../utils/bot.js";
 import registerHandlers from "../handlers/handlers.js";
 
 const startBot = async () => {
+  
+  await bot.init();
+  
   await registerHandlers(bot);
   const handleWebhook = webhookCallback(bot, "http");
 
