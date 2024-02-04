@@ -1,16 +1,14 @@
-import { webhookCallback } from "grammy";
-import bot from "../utils/bot.js";
-import registerHandlers from "../handlers/handlers.js";
+import { Bot, webhookCallback } from "grammy";
 
-const startBot = async () => {
-  
-  await bot.init();
-  
-  await registerHandlers(bot);
-  const handleWebhook = webhookCallback(bot, "http");
+const token = process.env.BOT_TOKEN;
+if (!token) throw new Error("BOT_TOKEN is unset");
 
-  return handleWebhook; // Возвращаем функцию-обработчик из функции startBot
-};
+const bot = new Bot(token);
 
-// Вызываем startBot для инициализации и запуска бота
-export default startBot; 
+bot.command('start', ctx => {
+    ctx.reply('Hello Vercel!')
+})
+
+
+
+export default webhookCallback(bot, "http");
