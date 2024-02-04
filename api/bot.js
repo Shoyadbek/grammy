@@ -1,6 +1,6 @@
 import { webhookCallback } from "grammy";
-import bot from "./utils/bot.js";
-import registerHandlers from "./handlers/handlers.js";
+import bot from "../utils/bot.js";
+import registerHandlers from "../handlers/handlers.js";
 
 async function runApp() {
   // Handle errors
