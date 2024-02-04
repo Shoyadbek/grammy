@@ -1,10 +1,10 @@
 import { Bot, session } from "grammy";
-import env from "./config.js";
+
 import { ignoreOld, sequentialize } from "grammy-middlewares";
 import i18n from "./i18n.js";
-import db from "./db.js";
 
-const bot = new Bot(env.BOT_TOKEN);
+
+const bot = new Bot(process.env.BOT_TOKEN);
 
 // Middlewares
 
