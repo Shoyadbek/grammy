@@ -6,9 +6,6 @@ async function runApp() {
   // Handle errors
   bot.catch((err) => console.error(err));
 
-  // Initialize bot
-  await bot.init();
-
   // Register handlers
   await registerHandlers();
 
