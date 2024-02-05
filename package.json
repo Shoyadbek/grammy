@@ -2,7 +2,7 @@
   "name": "bot",
   "version": "1.0.0",
   "description": "",
-
+  "type": "module",
   "main": "index.js",
   "keywords": [],
   "author": "",
@@ -12,8 +12,6 @@
     "fastify": "^4.26.0",
     "fastify-plugin": "^4.5.1",
     "telegraf": "^4.15.3"
-  },
-  "devDependencies": {
-    "prisma": "^5.8.0"
   }
+
 }
