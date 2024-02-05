@@ -1,18 +1,8 @@
-const Fastify = require('fastify')
-require('dotenv').config()
+import { Telegraf } from "telegraf";
 
-const app = Fastify({ logger: true })
-app.register(require('../src/bot'))
-app.register(require('../src/webhook.js'))
-app.get('/',  (req, rep) => rep.send(
-  'Hi! This is a Telegram bot server 🤖\n' +
-  '📣 Built with Telegraf\n' +
-  '⚡ Spun up using Fastify\n' +
-  '🚀 Hosted on Vercel\n' +
-  'The webhook is hidden in a secret path that only Telegram knows 🦾'
-))
+const token = process.env.BOT_TOKEN; // Проверьте, что у вас есть переменная окружения BOT_TOKEN
+const bot = new Telegraf(token);
 
-module.exports = async (req, res) => {
-  await app.ready();
-  app.server.emit('request', req, res);
-}
+bot.command("hello", ctx => ctx.reply("Hello, friend!"));
+
+export const botFunction = bot.webhookCallback(bot.secretPathComponent());
