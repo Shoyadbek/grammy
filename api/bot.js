@@ -27,11 +27,13 @@ bot.command("keyboard", (ctx) => {
   });
 });
 
-bot.on('message', (ctx) => {
-  const {counter} = JSON.parse(ctx.message.web_app_data?.data);
-  ctx.reply(`You clicked ${counter} times!`)
-})
+bot.telegram.deleteWebhook().then(() => bot.telegram.getUpdates({ offset: -1 }))
+  .then(updates => {
+    if (updates.length) {
+      console.log(`Dropped ${updates.length} pending updates`);
+    }
+  });
 
 export default (req, res) => {
-  return bot.handleUpdate(req.body, res);
+  return bot.handleUpdate(req.body, res, { dropPendingUpdates: true });
 };
