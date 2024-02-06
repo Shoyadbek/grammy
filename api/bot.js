@@ -1,5 +1,5 @@
 import { Telegraf } from "telegraf";
-import { VercelRequest, VercelResponse } from "@vercel/node";
+
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
