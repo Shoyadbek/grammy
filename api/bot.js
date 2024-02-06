@@ -1,8 +1,10 @@
 import { Telegraf } from "telegraf";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
-const token = process.env.BOT_TOKEN; // Проверьте, что у вас есть переменная окружения BOT_TOKEN
-const bot = new Telegraf(token);
+const bot = new Telegraf(process.env.BOT_TOKEN);
 
-bot.command("hello", ctx => ctx.reply("Hello, friend!"));
+bot.command("hello", (ctx) => ctx.reply("Hello, friend!"));
 
-export default botFunction = bot.webhookCallback(bot.secretPathComponent());
+module.exports = (req, res) => {
+  return bot.handleUpdate(req.body, res);
+};
