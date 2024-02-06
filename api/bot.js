@@ -27,12 +27,9 @@ bot.command("keyboard", (ctx) => {
   });
 });
 
-bot.telegram.deleteWebhook().then(() => bot.telegram.getUpdates({ offset: -1 }))
-  .then(updates => {
-    if (updates.length) {
-      console.log(`Dropped ${updates.length} pending updates`);
-    }
-  });
+bot.telegram.deleteWebhook().then(() => {
+  return bot.telegram.setWebhook(`${process.env.VERCEL_URL}/api/bot`, { dropPendingUpdates: true });
+});
 
 export default (req, res) => {
   return bot.handleUpdate(req.body, res, { dropPendingUpdates: true });
